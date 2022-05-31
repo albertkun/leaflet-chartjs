@@ -23,6 +23,7 @@ header{
     display: grid;
 }
 
+/* modify contents to take-in `the_chart` HTML div */
 #contents{
     grid-area: content;
     display: grid;
@@ -48,6 +49,7 @@ header{
     grid-row: 1; 
 }
 
+/* add the chart container css */
 .chart-container{
     grid-area: the_chart;
 }

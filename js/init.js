@@ -9,7 +9,7 @@ let layers = {
 	"Non-English as First Language <svg height='10' width='10'><circle cx='5' cy='5' r='4' stroke='black' stroke-width='1' fill='red' /></svg>": nonEnglishFirst
 }
 
-// add variables for keeping track of the count for the charts
+// step 1. add variables for keeping track of the count for the charts
 let countEnglish = 0;
 let countNonEnglish = 0;
 
@@ -42,13 +42,13 @@ function addMarker(data){
     if(data['Is your English your first language?'] == "Yes"){
         circleOptions.fillColor = "red"
         englishFirst.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>English First Language</h2>`))
-        // add to the running total of English as first language speajers
+        // step 2. add to the running total of English as first language speakers
         countEnglish += 1;
         }
     else{
         circleOptions.fillColor = "blue"
         nonEnglishFirst.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>Non-English First Language</h2>`))
-        // add to the running total of non-English 
+        // step 3. add to the running total of non-English 
         countNonEnglish +=1;
     }
     return data
@@ -73,7 +73,7 @@ function processData(results){
     nonEnglishFirst.addTo(map)  
     let allLayers = L.featureGroup([englishFirst,nonEnglishFirst]);
     map.fitBounds(allLayers.getBounds());
-    addChart() // call the addChart function after the data is added
+    addChart() // step 4. call the addChart function after the data is added, the function is created in step 5.
 };
 
 loadData(dataUrl)
@@ -100,8 +100,7 @@ function toggleNonEnglishLayer(){
     }
 }
 
-//function to add chart after the data gets created
-
+//step 5. add this new function to add chart after the data gets created
 function addChart(){
     // create the new chart here, target the id in the html called "chart"
     new Chart(document.getElementById("chart"), {
